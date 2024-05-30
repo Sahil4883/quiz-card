@@ -1,5 +1,12 @@
+import React from "react";
 import Link from "next/link";
 
-export default function Login() {
-  return <Link href="/">Home</Link>;
-}
+const Login = () => {
+  return (
+    <>
+      <div>Login Page</div>;<Link href="/">GO TO HOME</Link>
+    </>
+  );
+};
+
+export default Login;
