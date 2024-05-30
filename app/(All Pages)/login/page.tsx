@@ -1,10 +1,13 @@
 import React from "react";
 import Link from "next/link";
+import Nav from "@/Components/page";
 
 const Login = () => {
   return (
     <>
-      <div>Login Page</div>;<Link href="/">GO TO HOME</Link>
+      <Nav />
+      <div>Login Page</div>
+      <Link href="/">GO TO HOME</Link>
     </>
   );
 };
