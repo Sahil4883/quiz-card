@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Nav from "@/Components/page";
+import Nav from "@/Components/Nav";
 
 const Login = () => {
   return (
