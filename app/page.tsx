@@ -1,9 +1,5 @@
-import Nav from "@/Components/Nav";
+import Nav from "@/Components/Global/Nav";
 
 export default function Home() {
-  return (
-    <>
-      <Nav />
-    </>
-  );
+  return <>Landing Page</>;
 }
