@@ -4,9 +4,9 @@ import Link from "next/link";
 const Login = () => {
   return (
     <>
-      <div className="align-center" style={{ width: 100, height: 100 }}>
-        <form className="max-w-sm mx-auto align-center">
-          <div className="mb-5">
+      <div className="align-center w-screen h-screen">
+        <form className="max-w-sm mx-auto align-center ">
+          <div className="mb-5 ">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Your email
             </label>

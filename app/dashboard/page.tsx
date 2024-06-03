@@ -3,12 +3,13 @@ import { redirect } from "next/navigation";
 
 export default async function Home() {
   const session = await getSession();
-  if (session?.user) {
-    redirect("/dashboard");
+  if (session?.user == null) {
+    redirect("/");
   }
   return (
-    <>
-      <a href="/api/auth/login">Login</a>
-    </>
+    <div>
+      {!!session?.user && <div>{session.user.email}</div>}-
+      <a href="/api/auth/logout">Logout User</a>
+    </div>
   );
 }
