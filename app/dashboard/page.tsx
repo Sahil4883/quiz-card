@@ -1,15 +1,14 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import { UserProfile } from "./User-Profil";
 
 export default async function Home() {
-  const session = await getSession();
-  if (session?.user == null) {
-    redirect("/");
-  }
   return (
     <div>
-      {!!session?.user && <div>{session.user.email}</div>}-
-      <a href="/api/auth/logout">Logout User</a>
+      <Suspense fallback="Loading your information...">
+        <UserProfile />
+      </Suspense>
     </div>
   );
 }
