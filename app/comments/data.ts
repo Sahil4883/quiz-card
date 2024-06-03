@@ -1,3 +1,5 @@
+/* For Learning and Implementation purpose and should be deleted in the production */
+
 const comments = [
   {
     id: 1,

@@ -1,3 +1,4 @@
+/* For Learning and Implementation purpose and should be deleted in the production */
 import comments from "./data";
 
 export async function GET() {

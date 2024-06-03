@@ -6,9 +6,5 @@ export default async function Home() {
   if (session?.user) {
     redirect("/dashboard");
   }
-  return (
-    <>
-      <a href="/api/auth/login">Login</a>
-    </>
-  );
+  return <>Home Page Here</>;
 }
