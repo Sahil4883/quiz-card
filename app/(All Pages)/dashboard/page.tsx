@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { UserProfile } from "./User-Profil";
+import { UserProfile } from "./User-Profile";
 
 export default async function Home() {
   return (

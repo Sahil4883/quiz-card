@@ -10,12 +10,13 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-.h1-home {
+.h-home {
   font-family: "Manrope", sans-serif;
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
 }
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
