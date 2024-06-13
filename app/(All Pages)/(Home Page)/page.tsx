@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import certificate from "@/public/Images/Home/certificate.png";
 import rocket from "@/public/Images/Home/certificate.png";
+import certificate '@/public/Images/Home/certificate.png';
 
 export default async function Home() {
   /*If user is already logged in then user are redirected to '/dashboard' */
