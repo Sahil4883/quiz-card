@@ -1,9 +1,6 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import certificate from "@/public/Images/Home/certificate.png";
-import rocket from "@/public/Images/Home/certificate.png";
-import certificate '@/public/Images/Home/certificate.png';
 
 export default async function Home() {
   /*If user is already logged in then user are redirected to '/dashboard' */
@@ -33,6 +30,16 @@ export default async function Home() {
             width={500}
             height={500}
             alt="Certificate"
+          />
+          <h3 className="h-home text-6xl">Easy to Save and Bookmark Files</h3>
+        </div>
+        <div className="flex justify-center align-center">
+          <Image
+            className="w-1/2"
+            src="/certificate.png"
+            width={500}
+            height={500}
+            alt="Rocket"
           />
           <h3 className="h-home text-6xl">Easy to Save and Bookmark Files</h3>
         </div>
