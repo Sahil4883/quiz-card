@@ -33,16 +33,7 @@ export default async function Home() {
           />
           <h3 className="h-home text-6xl">Easy to Save and Bookmark Files</h3>
         </div>
-        <div className="flex justify-center align-center">
-          <Image
-            className="w-1/2"
-            src="/certificate.png"
-            width={500}
-            height={500}
-            alt="Rocket"
-          />
-          <h3 className="h-home text-6xl">Easy to Save and Bookmark Files</h3>
-        </div>
+        
       </div>
     </>
   );
