@@ -27,8 +27,8 @@ export default async function Home() {
           <Image
             className="w-1/2"
             src="/certificate.png"
-            width={400}
-            height={400}
+            width={500}
+            height={500}
             alt="Certificate"
           />
           <h3 className="h-home text-6xl">Easy to Save and Bookmark Files</h3>
