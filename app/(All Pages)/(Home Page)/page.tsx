@@ -9,6 +9,7 @@ export default async function Home() {
     redirect("/dashboard");
   }
   return (
+    /*The Tailwind part is needed to be edited asap */
     <>
       <div className=" h-screen flex items-center flex-col justify-center bg-black">
         <h1 className="h-home text-7xl md:text-8xl text-white">
@@ -33,7 +34,6 @@ export default async function Home() {
           />
           <h3 className="h-home text-6xl">Easy to Save and Bookmark Files</h3>
         </div>
-        
       </div>
     </>
   );
