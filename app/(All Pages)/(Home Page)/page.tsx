@@ -35,6 +35,7 @@ export default async function Home() {
           <h3 className="h-home text-6xl">Easy to Save and Bookmark Files</h3>
         </div>
       </div>
+      <div className="bg-green-700 text-red-200">Hello world</div>
     </>
   );
 }
