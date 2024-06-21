@@ -39,13 +39,13 @@ export default async function Home() {
       <div className="md:flex md:items-center">
         <Image
           className="col-span-1 md:col-span-2"
-          src="/certificate.png"
+          src="/rr.png"
           width={500}
           height={500}
-          alt="Certificate"
+          alt="Rocket"
         />
         <h3 className="h-home text-4xl col-span-1 md:col-span-2 md:text-6xl md:text-center">
-          Easy to Save and Bookmark Files
+          Share your notes and help others
         </h3>
       </div>
     </>
