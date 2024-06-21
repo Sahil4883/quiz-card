@@ -48,10 +48,11 @@ bun dev
 
 ## Technologies Used
 
-- **Frontend:** Next.js
-- **Backend:** Node.js, Express
-- **Database:** MongoDB
-- **Styling:** CSS, Bootstrap, Tailwind
+- **Frontend:** Next.js & React.js
+- **Backend:** Next.js api,Node.js
+- **Database:** postgresql
+- **Auth:** Auth0
+- **Styling:** CSS, Tailwind
 
 ## Contributing
 
