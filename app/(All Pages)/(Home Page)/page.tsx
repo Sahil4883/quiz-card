@@ -23,19 +23,19 @@ export default async function Home() {
           Start Taking Notes
         </a>
       </div>
-      <div>
-        <div className="flex justify-center align-center">
-          <Image
-            className="w-1/2"
-            src="/certificate.png"
-            width={500}
-            height={500}
-            alt="Certificate"
-          />
-          <h3 className="h-home text-6xl">Easy to Save and Bookmark Files</h3>
-        </div>
+
+      <div className="md:flex md:items-center">
+        <Image
+          className="col-span-1 md:col-span-2"
+          src="/certificate.png"
+          width={500}
+          height={500}
+          alt="Certificate"
+        />
+        <h3 className="h-home col-span-1 md:col-span-2 md:text-6xl md:text-center">
+          Easy to Save and Bookmark Files
+        </h3>
       </div>
-      <div className="bg-green-700 text-red-200">Hello world</div>
     </>
   );
 }
