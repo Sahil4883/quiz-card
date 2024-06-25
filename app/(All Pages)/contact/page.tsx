@@ -40,6 +40,7 @@ const Contact = () => {
           placeholder="john.doe@company.com"
           required
         />
+        /* message box needed for the users message for the client */
       </div>
 
       <button
