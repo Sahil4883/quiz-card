@@ -10,6 +10,7 @@ export default async function Home() {
   }
   return (
     /*The Tailwind part is needed to be edited asap */
+    /*Learned More Tailwind and will start to implement it from next week or so */
     <>
       <div className=" h-screen flex items-center flex-col justify-center bg-black">
         <h1 className="h-home text-7xl md:text-8xl text-white">
