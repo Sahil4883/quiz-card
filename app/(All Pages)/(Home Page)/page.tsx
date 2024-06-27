@@ -10,6 +10,7 @@ export default async function Home() {
   }
   return (
     /*The Tailwind part is needed to be edited asap */
+    /* Learned about the basics of tailwind and already implementing it on another side project */
     /*Learned More Tailwind and will start to implement it from next week or so */
     <>
       <div className=" h-screen flex items-center flex-col justify-center bg-black">
