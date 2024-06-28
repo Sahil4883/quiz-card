@@ -1,13 +1,9 @@
-import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 
 export default async function Home() {
   /*If user is already logged in then user are redirected to '/dashboard' */
-  const session = await getSession();
-  if (session?.user) {
-    redirect("/dashboard");
-  }
+
   return (
     /*The Tailwind part is needed to be edited asap */
     /* Learned about the basics of tailwind and already implementing it on another side project */
