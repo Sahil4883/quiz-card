@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import GetStartedButton from "@/Components/GetStartedButton";
-import UserInfo from "./UserInfo";
+
 const Nav = () => {
   return (
     <header>
