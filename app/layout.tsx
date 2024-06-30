@@ -26,17 +26,14 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body>
           <SignedOut>
             <SignInButton />
           </SignedOut>
           <SignedIn>
             <UserButton />
           </SignedIn>
-          <Nav />
           {children}
-
-          <Footer />
         </body>
       </html>
     </ClerkProvider>
