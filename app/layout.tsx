@@ -27,6 +27,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
+          <Nav />
           <SignedOut>
             <SignInButton />
           </SignedOut>
@@ -34,6 +35,7 @@ export default function RootLayout({
             <UserButton />
           </SignedIn>
           {children}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
