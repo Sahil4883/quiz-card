@@ -1,24 +1,19 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import { SignInButton } from "@clerk/nextjs";
 
 export default async function Home() {
   /*If user is already logged in then user are redirected to '/dashboard' */
 
   return (
-    /*The Tailwind part is needed to be edited asap */
-    /* Learned about the basics of tailwind and already implementing it on another side project */
-    /*Learned More Tailwind and will start to implement it from next week or so */
     <>
       <div className=" h-screen flex items-center flex-col justify-center bg-black">
         <h1 className="h-home text-7xl md:text-8xl text-white">
           Ready To Grab <br />
           Your Notes
         </h1>
-        <a
-          href="/api/auth/login"
-          className="text-white bg-gradient-to-r from-cyan-700 to-blue-700 p-3 rounded-3xl m-5"
-        >
-          Start Taking Notes
+        <a className="text-white bg-gradient-to-r from-cyan-700 to-blue-700 p-3 rounded-3xl m-5">
+          <SignInButton>Start Taking Notes</SignInButton>
         </a>
       </div>
       <div className="md:flex md:items-center">

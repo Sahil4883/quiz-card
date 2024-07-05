@@ -23,5 +23,10 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "description": "Quiz-App is a web-based application that allows users to create, manage, and test their knowledge with custom question-and-answer cards. Users can add new cards, delete existing ones, and quiz themselves on the questions in their deck. The application tracks whether the user knew the answer or not, helping them to identify areas for improvement.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
