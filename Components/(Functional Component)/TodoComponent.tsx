@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
-
 interface Todo {
   id: number;
   question: string;

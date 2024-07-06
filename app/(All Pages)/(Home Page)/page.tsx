@@ -1,6 +1,7 @@
-import { redirect } from "next/navigation";
 import Image from "next/image";
 import { SignInButton } from "@clerk/nextjs";
+import rr from "@/public/(Home)/rr.png";
+import certificate from "@/public/(Home)/certificate.png";
 
 export default async function Home() {
   /*If user is already logged in then user are redirected to '/dashboard' */
@@ -19,7 +20,8 @@ export default async function Home() {
       <div className="md:flex md:items-center">
         <Image
           className="col-span-1 md:col-span-2"
-          src="/certificate.png"
+          src={certificate}
+          sizes="50vw"
           width={500}
           height={500}
           alt="Certificate"
@@ -32,7 +34,8 @@ export default async function Home() {
       <div className="md:flex md:items-center">
         <Image
           className="col-span-1 md:col-span-2"
-          src="/rr.png"
+          src={rr}
+          sizes="50vw"
           width={500}
           height={500}
           alt="Rocket"
