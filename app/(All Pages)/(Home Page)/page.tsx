@@ -31,7 +31,7 @@ export default async function Home() {
         </h3>
       </div>
 
-      <div className="md:flex md:items-center">
+      <div className="md:flex md:items-center md:flex-row-reverse">
         <Image
           className="col-span-1 md:col-span-2"
           src={rr}
