@@ -3,33 +3,55 @@ import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 
 interface Todo {
   id: number;
-  text: string;
+  question: string;
+  answer: string;
   completed: boolean;
 }
 
 const TodoApp: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [input, setInput] = useState<string>("");
+  const [question, setQuestion] = useState<string>("");
+  const [answer, setAnswer] = useState<string>("");
 
   useEffect(() => {
     // Simulate fetching data from an API
     const initialTodos: Todo[] = [
-      { id: 1, text: "Learn React", completed: false },
-      { id: 2, text: "Learn Tailwind CSS", completed: false },
+      {
+        id: 1,
+        question: "What is React?",
+        answer: "A JavaScript library for building user interfaces",
+        completed: false,
+      },
+      {
+        id: 2,
+        question: "What is Tailwind CSS?",
+        answer: "A utility-first CSS framework",
+        completed: false,
+      },
     ];
     setTodos(initialTodos);
   }, []);
 
   const addTodo = () => {
-    if (input.trim()) {
-      const newTodo: Todo = { id: Date.now(), text: input, completed: false };
+    if (question.trim() && answer.trim()) {
+      const newTodo: Todo = {
+        id: Date.now(),
+        question,
+        answer,
+        completed: false,
+      };
       setTodos([...todos, newTodo]);
-      setInput("");
+      setQuestion("");
+      setAnswer("");
     }
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+  const handleQuestionChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuestion(e.target.value);
+  };
+
+  const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.target.value);
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -56,11 +78,19 @@ const TodoApp: React.FC = () => {
       <div className="mb-4">
         <input
           type="text"
-          value={input}
-          onChange={handleInputChange}
+          value={question}
+          onChange={handleQuestionChange}
+          onKeyPress={handleKeyPress}
+          className="w-full p-2 border rounded shadow mb-2"
+          placeholder="Question"
+        />
+        <input
+          type="text"
+          value={answer}
+          onChange={handleAnswerChange}
           onKeyPress={handleKeyPress}
           className="w-full p-2 border rounded shadow"
-          placeholder="Add a new to-do..."
+          placeholder="Answer"
         />
         <button
           onClick={addTodo}
@@ -73,7 +103,7 @@ const TodoApp: React.FC = () => {
         {todos.map((todo) => (
           <li
             key={todo.id}
-            className="flex items-center justify-between p-2 border-b"
+            className="flex flex-col items-start justify-between p-2 border-b"
           >
             <span
               onClick={() => toggleComplete(todo.id)}
@@ -81,11 +111,19 @@ const TodoApp: React.FC = () => {
                 todo.completed ? "line-through" : ""
               }`}
             >
-              {todo.text}
+              <strong>Q:</strong> {todo.question}
+            </span>
+            <span
+              onClick={() => toggleComplete(todo.id)}
+              className={`cursor-pointer ${
+                todo.completed ? "line-through" : ""
+              }`}
+            >
+              <strong>A:</strong> {todo.answer}
             </span>
             <button
               onClick={() => deleteTodo(todo.id)}
-              className="text-red-500 hover:text-red-700"
+              className="text-red-500 hover:text-red-700 mt-1"
             >
               Delete
             </button>
