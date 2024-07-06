@@ -11,6 +11,7 @@ export default async function Home() {
       <div>
         <UserProfile />
         <Suspense fallback={<Textloading />}></Suspense>
+        <TodoList />
       </div>
     </Protect>
   );
