@@ -19,7 +19,8 @@ const Contact = () => {
           Example textarea
         </label>
         <textarea
-          className="form-control"
+          /*This text area needs to be added further for better UI */
+          className="form-control max-w-48"
           id="exampleFormControlTextarea1"
         ></textarea>
       </div>
