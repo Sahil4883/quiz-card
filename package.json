@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.1.6",
-    "@heroicons/react": "^2.1.4",
     "@material-tailwind/react": "^2.1.9",
     "@supabase/supabase-js": "^2.44.2",
     "bootstrap": "^5.3.3",
