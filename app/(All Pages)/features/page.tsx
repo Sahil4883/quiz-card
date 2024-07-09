@@ -1,7 +1,8 @@
 import React from "react";
+import { Underdevelopment } from "@/Components/Underdevelopment";
 
 const Features = () => {
-  return <div>Features</div>;
+  return <Underdevelopment />;
 };
 
 export default Features;

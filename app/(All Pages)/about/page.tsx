@@ -1,7 +1,8 @@
+import { Underdevelopment } from "@/Components/Underdevelopment";
 import React from "react";
 
 const About = () => {
-  return <div>About</div>;
+  return <Underdevelopment />;
 };
 
 export default About;
