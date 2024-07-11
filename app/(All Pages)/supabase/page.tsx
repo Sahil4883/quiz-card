@@ -1,6 +1,7 @@
 "use client";
 import { createClient } from "@supabase/supabase-js";
 import { useRef, useState } from "react";
+import { Protect } from "@clerk/nextjs";
 
 // Add clerk to Window to avoid type errors
 declare global {
@@ -58,26 +59,28 @@ export default function Supabase() {
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <input
-          onSubmit={sendAddress}
-          style={{ color: "black" }}
-          type="text"
-          ref={inputRef}
-        />
-        <button onClick={sendAddress}>Send Address</button>
-        <button onClick={listAddresses}>Fetch Addresses</button>
-      </div>
-      <h2>Addresses</h2>
-      {!addresses ? (
-        <p>No addresses</p>
-      ) : (
-        <ul>
-          {addresses.map((address: any) => (
-            <li key={address.id}>{address.content}</li>
-          ))}
-        </ul>
-      )}
+      <Protect>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <input
+            onSubmit={sendAddress}
+            style={{ color: "black" }}
+            type="text"
+            ref={inputRef}
+          />
+          <button onClick={sendAddress}>Send Address</button>
+          <button onClick={listAddresses}>Fetch Addresses</button>
+        </div>
+        <h2>Addresses</h2>
+        {!addresses ? (
+          <p>No addresses</p>
+        ) : (
+          <ul>
+            {addresses.map((address: any) => (
+              <li key={address.id}>{address.content}</li>
+            ))}
+          </ul>
+        )}
+      </Protect>
     </>
   );
 }
