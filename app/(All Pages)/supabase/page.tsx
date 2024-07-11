@@ -1,3 +1,4 @@
+//This page needs alot of work to setup and experiment with supabase & clerk
 "use client";
 import { createClient } from "@supabase/supabase-js";
 import { useRef, useState } from "react";
