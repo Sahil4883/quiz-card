@@ -1,6 +1,7 @@
 //This page needs alot of work to setup and experiment with supabase
 //IDK What to do at this point
 //Learning Supabase to understand this asap
+//Didn't learn Supabase yet
 "use client";
 import { createClient } from "@supabase/supabase-js";
 import { useRef, useState } from "react";
