@@ -2,6 +2,7 @@
 //IDK What to do at this point
 //Learning Supabase to understand this asap
 //Didn't learn Supabase yet
+//Starting learning supabase for the same
 "use client";
 import { createClient } from "@supabase/supabase-js";
 import { useRef, useState } from "react";
