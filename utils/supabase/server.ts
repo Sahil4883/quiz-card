@@ -2,7 +2,7 @@
 //This week aim is to learn supabase for nextjs and implement the database fully and completely
 ///Monday of the Learning and i havent learned anything today but surely i will
 //I implemented the and integrate the supabase with clerk and tested
-//I didn't do much today wednesday
+//I didn't do much today except exploring the many features of supabase
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
