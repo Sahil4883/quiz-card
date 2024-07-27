@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 
 const Nav = () => {
   const pathname = usePathname(); //for getting the active link
-  console.log(pathname);
   const user = useAuth();
   return (
     <header>
