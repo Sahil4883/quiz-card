@@ -22,6 +22,7 @@ const footer = () => {
         <div className="grid grid-flow-col gap-4">
           <a>
             <svg
+              //TODO:Add the correct SVG icons and link it with our social handle
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
