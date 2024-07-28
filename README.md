@@ -50,9 +50,12 @@ bun dev
 
 - **Frontend:** Next.js & React.js
 - **Backend:** Next.js api,Node.js
+  **Styling:** CSS, Tailwind
 - **Database:** postgresql
 - **Auth:** Clerk
-- **Styling:** CSS, Tailwind
+  **DBMS:** Supabase
+  **Analytics:** PostHog
+-
 
 ## Contributing
 
