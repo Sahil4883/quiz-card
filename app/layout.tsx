@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/Components/Nav";
 import Footer from "@/Components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { CSPostHogProvider } from "@/app/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +21,14 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>
-          <Nav />
+        <CSPostHogProvider>
+          <body>
+            <Nav />
 
-          {children}
-          <Footer />
-        </body>
+            {children}
+            <Footer />
+          </body>
+        </CSPostHogProvider>
       </html>
     </ClerkProvider>
   );
