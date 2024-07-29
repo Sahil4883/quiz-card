@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const footer = () => {
   return (
-    <footer className="footer footer-center border-t-2 text-base-content rounded p-4">
+    <footer className="footer footer-center border-t-2 text-base-content rounded p-4 mt-6">
       <nav className="grid grid-flow-col gap-4">
         <Link href="/" className="link link-hover">
           Home
