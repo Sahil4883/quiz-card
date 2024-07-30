@@ -4,6 +4,7 @@ import rr from "@/public/(Home)/rr.png";
 import certificate from "@/public/(Home)/certificate.png";
 export default async function Home() {
   /*If user is already logged in then user are redirected to '/dashboard' */
+  //TODO:When the signin button is clicked and user is already signed in so the url should be redirected to '/dashboard'
 
   return (
     <>
