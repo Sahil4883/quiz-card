@@ -1,6 +1,7 @@
 import React from "react";
 import { Underdevelopment } from "@/Components/Underdevelopment";
-//TODO: Add the Contact page and remove the Underdevelopment component
+//TODO: Edit the contact form to suit our current requirement
+//TODO:Connect the form with backend service
 const Contact = () => {
   return (
     <section className="bg-gray-100">
