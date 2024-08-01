@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <>
       <div className=" h-screen flex items-center flex-col justify-center bg-black">
-        <h1 className="h-home text-7xl md:text-8xl text-white">
+        <h1 className="h-home text-7xl md:text-8xl text-white text-center">
           Ready To Grab <br />
           Your Notes
         </h1>
