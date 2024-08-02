@@ -14,7 +14,9 @@ export default async function Home() {
           Your Notes
         </h1>
         <a className="text-white bg-gradient-to-r from-cyan-700 to-blue-700 p-3 rounded-3xl m-5">
-          <SignInButton>Start Taking Notes</SignInButton>
+          <SignInButton fallbackRedirectUrl="/dashboard">
+            Start Taking Notes
+          </SignInButton>
         </a>
       </div>
       <div className="md:flex md:items-center">
