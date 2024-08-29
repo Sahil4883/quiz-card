@@ -14,7 +14,6 @@
     "@material-tailwind/react": "^2.1.9",
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.4",
-    "bootstrap": "^5.3.3",
     "next": "14.2.3",
     "posthog-js": "^1.150.0",
     "react": "^18",
