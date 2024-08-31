@@ -1,27 +1,34 @@
-import { createClient } from "@/app/utils/supabase/server";
+import { useState } from "react";
+import { createNote } from "@/app/utils/supabase/data";
+export default function CreateNote() {
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
 
-export default async function Notes() {
-  const supabase = createClient();
-  const { data: notes, error } = await supabase.from("notes").select();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  if (error) {
-    return <div>Error loading notes: {error.message}</div>;
-  }
+    try {
+      await createNote(title);
+      setMessage("Note added successfully!");
+      setTitle(""); // Clear the input field after successful submission
+    } catch (error: any) {
+      setMessage(`Error: ${error.message}`);
+    }
+  };
 
   return (
     <div>
-      {notes && notes.length > 0 ? (
-        <ul>
-          {notes.map((note) => (
-            <li key={note.id}>
-              <h3>{note.title}</h3>
-              <p>{note.content}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No notes available.</p>
-      )}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter note title"
+          required
+        />
+        <button type="submit">Add Note</button>
+      </form>
+      {message && <p>{message}</p>}
     </div>
   );
 }
