@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { createNote } from "@/app/utils/supabase/data";
+//TODO: Make the Full crud operation available here soon
 import { readNotes } from "@/app/utils/supabase/data";
 export default async function page() {
   const readnotes = await readNotes();
