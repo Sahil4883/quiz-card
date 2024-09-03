@@ -8,7 +8,6 @@ export default async function page() {
     <div>
       <div className="p-4 max-w-md mx-auto bg-white rounded-lg shadow-md">
         {/* Title Input Section */}
-        <Input />
         {/* Todo List Section */}
         <ul className="list-none p-0">
           {readnotes.map((note) => (
