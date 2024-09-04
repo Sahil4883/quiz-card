@@ -16,18 +16,7 @@ export default function Input() {
       alert("Error creating note.");
     }
   };
-  return (
-    <div className="mb-4 flex">
-      <input
-        type="text"
-        placeholder="Enter new todo title"
-        className="flex-grow p-2 border rounded-l-lg border-gray-300 focus:outline-none"
-      />
-      <button className="p-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600">
-        Add Todo
-      </button>
-    </div>
-  );
+  return <div>Hello</div>;
 }
 const createNoteServer = async (title: string) => {
   return await createNote(title);
