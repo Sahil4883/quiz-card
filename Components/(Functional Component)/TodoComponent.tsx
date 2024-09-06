@@ -1,4 +1,4 @@
-import { useState } from "@/app/utils/react";
+import { useState } from "react";
 import { createClient } from "@/app/utils/supabase/server";
 
 const supabase = createClient();
