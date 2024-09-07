@@ -48,6 +48,7 @@ export default function CreateForm() {
             id="title"
             type="text"
             value={title}
+            required
             onChange={(e) => setTitle(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
