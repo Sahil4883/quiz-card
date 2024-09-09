@@ -1,6 +1,7 @@
 import CreateForm from "@/Components/TodoComponents/CreateForm";
 import TitleList from "@/Components/TodoComponents/TitleList";
-export default function Home() {
+
+export async function UserProfile() {
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl text-center font-bold mb-6">Supabase Titles</h1>
