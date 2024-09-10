@@ -30,6 +30,7 @@ const Nav = () => {
                 </SignInButton>
               </a>
             )}
+
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
