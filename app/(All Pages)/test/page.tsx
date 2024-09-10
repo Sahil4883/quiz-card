@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSession, useUser } from "@clerk/nextjs";
 import { createClient } from "@supabase/supabase-js";
 
-export default function Home() {
+export default function Test() {
   const [tasks, setTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
@@ -11,7 +11,7 @@ export default function Home() {
   const { user } = useUser();
   // The `useSession()` hook will be used to get the Clerk session object
   const { session } = useSession();
-
+  console.log(session?.getToken({ template: "supabase" }));
   // Create a custom supabase client that injects the Clerk Supabase token into the request headers
   function createClerkSupabaseClient() {
     return createClient(
@@ -71,14 +71,6 @@ export default function Home() {
     <div>
       <h1>Tasks</h1>
 
-      {loading && <p>Loading...</p>}
-
-      {!loading &&
-        tasks.length > 0 &&
-        tasks.map((task: any) => <p>{task.name}</p>)}
-
-      {!loading && tasks.length === 0 && <p>No tasks found</p>}
-
       <form onSubmit={createTask}>
         <input
           autoFocus
@@ -90,6 +82,13 @@ export default function Home() {
         />
         <button type="submit">Add</button>
       </form>
+      {loading && <p>Loading...</p>}
+
+      {!loading &&
+        tasks.length > 0 &&
+        tasks.map((task: any) => <p>{task.name}</p>)}
+
+      {!loading && tasks.length === 0 && <p>No tasks found</p>}
     </div>
   );
 }
