@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { UserProfile } from "@/Components/TodoComponents/User-Profile";
-import Textloading from "@/Components/(Skeleton)/Textloading";
+import Textloading from "@/Components/(Skeleton)/Loading";
 import { Protect } from "@clerk/nextjs";
 
 export default async function dashboard() {

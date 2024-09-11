@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSession, useUser } from "@clerk/nextjs";
 import { createClient } from "@supabase/supabase-js";
+/*TODO: Make a delete function looking at the previous projects */
 
 export default function Test() {
   const [tasks, setTasks] = useState<any[]>([]);

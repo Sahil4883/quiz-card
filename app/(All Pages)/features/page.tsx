@@ -3,7 +3,11 @@ import { Underdevelopment } from "@/Components/Underdevelopment";
 //TODO: Add the Features page and remove the Underdevelopment component
 
 const Features = () => {
-  return <Underdevelopment />;
+  return (
+    <>
+      <Underdevelopment />
+    </>
+  );
 };
 
 export default Features;
