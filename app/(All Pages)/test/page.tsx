@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useSession, useUser } from "@clerk/nextjs";
 import { createClient } from "@supabase/supabase-js";
-import NewNav from "../../../Components/(Skeleton)/NewNav";
 /*TODO: Make a delete function looking at the previous projects */
 
 export default function Test() {
@@ -71,7 +70,6 @@ export default function Test() {
 
   return (
     <div>
-      <NewNav />
       <h1>Tasks</h1>
 
       <form onSubmit={createTask}>
