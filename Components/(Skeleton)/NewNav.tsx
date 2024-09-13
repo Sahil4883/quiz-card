@@ -1,6 +1,12 @@
 import React from "react";
+import Link from "next/link";
+import { SignInButton, UserButton } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 // TODO: Add the main features of the current nav to implement and test this
 const NewNav = () => {
+  const pathname = usePathname(); //for getting the active link
+  const user = useAuth();
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -72,7 +78,17 @@ const NewNav = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {user.userId ? (
+            <UserButton />
+          ) : (
+            <a /* <a> tag should be used in order to be safe from the dependencies clashes */
+              className="text-white bg-blue-700 dark:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+            >
+              <SignInButton mode="modal" fallbackRedirectUrl="/dashboard">
+                Get Started
+              </SignInButton>
+            </a>
+          )}
         </div>
       </div>
     </div>
