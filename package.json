@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.2.7",
-    "@clerk/nextjs": "^5.1.6",
+    "@clerk/nextjs": "^5.5.2",
     "@material-tailwind/react": "^2.1.9",
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.4",
