@@ -4,7 +4,6 @@ import Link from "next/link";
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
-// TODO: Add the main features of the current nav to implement and test this
 const NewNav = () => {
   const pathname = usePathname(); //for getting the active link
   const user = useAuth();
