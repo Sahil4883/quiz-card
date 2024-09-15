@@ -2,11 +2,11 @@
 import React from "react";
 import Link from "next/link";
 import { SignInButton, UserButton } from "@clerk/nextjs";
-import { useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 const NewNav = () => {
   const pathname = usePathname(); //for getting the active link
-  const user = useAuth();
+  const { isSignedIn, user, isLoaded } = useUser();
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -43,7 +43,7 @@ const NewNav = () => {
                   Home
                 </Link>
               </li>
-              {user.userId ? (
+              {isSignedIn ? (
                 <li>
                   <Link
                     href="/dashboard"
@@ -103,7 +103,7 @@ const NewNav = () => {
                 Home
               </Link>
             </li>
-            {user.userId ? (
+            {isSignedIn ? (
               <li>
                 <Link
                   href="/dashboard"
@@ -148,7 +148,7 @@ const NewNav = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {user.userId ? (
+          {isSignedIn ? (
             <UserButton />
           ) : (
             <a /* <a> tag should be used in order to be safe from the dependencies clashes */
