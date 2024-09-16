@@ -2,50 +2,35 @@
 import { useEffect, useState } from "react";
 import { useSession, useUser } from "@clerk/nextjs";
 import { createClient } from "@supabase/supabase-js";
-/*TODO: Make a delete function looking at the previous projects */
 
 export default function Test() {
   const [tasks, setTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
-  // The `useUser()` hook will be used to ensure that Clerk has loaded data about the logged in user
   const { user } = useUser();
-  // The `useSession()` hook will be used to get the Clerk session object
   const { session } = useSession();
-  console.log(session?.getToken({ template: "supabase" }));
-  // Create a custom supabase client that injects the Clerk Supabase token into the request headers
+
   function createClerkSupabaseClient() {
     return createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
         global: {
-          // Get the custom Supabase token from Clerk
           fetch: async (url, options = {}) => {
             const clerkToken = await session?.getToken({
               template: "supabase",
             });
-
-            // Insert the Clerk Supabase token into the headers
             const headers = new Headers(options?.headers);
             headers.set("Authorization", `Bearer ${clerkToken}`);
-
-            // Now call the default fetch
-            return fetch(url, {
-              ...options,
-              headers,
-            });
+            return fetch(url, { ...options, headers });
           },
         },
       }
     );
   }
 
-  // Create a `client` object for accessing Supabase data using the Clerk token
   const client = createClerkSupabaseClient();
 
-  // This `useEffect` will wait for the User object to be loaded before requesting
-  // the tasks for the logged in user
   useEffect(() => {
     if (!user) return;
 
@@ -61,12 +46,26 @@ export default function Test() {
 
   async function createTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Insert task into the "tasks" database
-    await client.from("tasks").insert({
-      name,
-    });
+    await client.from("tasks").insert({ name });
     window.location.reload();
   }
+
+  const deleteSupabaseItem = async (id: string) => {
+    try {
+      const response = await fetch(`/api/delete/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        console.log("Task deleted successfully.");
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id)); // Update state to remove the task
+      } else {
+        console.log("Failed to delete the task.");
+      }
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
 
   return (
     <div>
@@ -83,11 +82,17 @@ export default function Test() {
         />
         <button type="submit">Add</button>
       </form>
+
       {loading && <p>Loading...</p>}
 
       {!loading &&
         tasks.length > 0 &&
-        tasks.map((task: any) => <p>{task.name}</p>)}
+        tasks.map((task: any) => (
+          <div key={task.id}>
+            <p>{task.name}</p>
+            <button onClick={() => deleteSupabaseItem(task.id)}>Delete</button>
+          </div>
+        ))}
 
       {!loading && tasks.length === 0 && <p>No tasks found</p>}
     </div>
