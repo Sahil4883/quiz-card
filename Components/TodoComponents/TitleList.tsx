@@ -1,5 +1,4 @@
 import { createClient } from "@/app/utils/supabase/server";
-import DeleteButton from "./DeleteButton";
 
 export default async function TitleList() {
   const supabase = createClient();
@@ -20,7 +19,9 @@ export default async function TitleList() {
               className="border-b py-2 flex justify-between items-center"
             >
               {title.title}
-              <DeleteButton />
+              <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out">
+                Delete
+              </button>
             </li>
           ))}
         </ul>
