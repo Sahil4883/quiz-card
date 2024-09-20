@@ -4,7 +4,6 @@ import Link from "next/link";
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
-//TODO: Make it responsive
 
 const Nav = () => {
   const pathname = usePathname(); //for getting the active link
