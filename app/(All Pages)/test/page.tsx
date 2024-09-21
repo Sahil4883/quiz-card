@@ -1,33 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useSession, useUser } from "@clerk/nextjs";
-import { createClient } from "@supabase/supabase-js";
+import { useUser } from "@clerk/nextjs";
+import createClerkSupabaseClient from "@/app/utils/supabase/createClerkSupabaseClient";
+
 //TODO: make a update function with a button to update the task
 export default function Test() {
   const [tasks, setTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
   const { user } = useUser();
-  const { session } = useSession();
-
-  function createClerkSupabaseClient() {
-    return createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        global: {
-          fetch: async (url, options = {}) => {
-            const clerkToken = await session?.getToken({
-              template: "supabase",
-            });
-            const headers = new Headers(options?.headers);
-            headers.set("Authorization", `Bearer ${clerkToken}`);
-            return fetch(url, { ...options, headers });
-          },
-        },
-      }
-    );
-  }
 
   const client = createClerkSupabaseClient();
 
@@ -36,7 +17,10 @@ export default function Test() {
 
     async function loadTasks() {
       setLoading(true);
-      const { data, error } = await client.from("tasks").select();
+      const { data, error } = await client
+        .from("tasks")
+        .select()
+        .order("id", { ascending: false });
       if (!error) setTasks(data);
       setLoading(false);
     }
@@ -64,6 +48,23 @@ export default function Test() {
       }
     } catch (error) {
       console.error("Error deleting task:", error);
+    }
+  };
+  // an update function to update the tasks
+  const updateSupabaseItem = async (id: string) => {
+    try {
+      const response = await fetch(`/api/update/${id}`, {
+        method: "UPDATE",
+      });
+
+      if (response.ok) {
+        console.log("Task updated successfully.");
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id)); // Update state to remove the task
+      } else {
+        console.log("Failed to update the task.");
+      }
+    } catch (error) {
+      console.error("Error updating task:", error);
     }
   };
 
@@ -100,6 +101,12 @@ export default function Test() {
                 className="border-b py-2 flex justify-between items-center"
               >
                 {task.name}
+                <button
+                  onClick={() => updateSupabaseItem(task.id)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
+                >
+                  Update
+                </button>
                 <button
                   onClick={() => deleteSupabaseItem(task.id)}
                   className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
