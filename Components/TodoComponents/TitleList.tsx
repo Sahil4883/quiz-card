@@ -2,7 +2,10 @@ import { createClient } from "@/app/utils/supabase/server";
 
 export default async function TitleList() {
   const supabase = createClient();
-  const { data: titles, error } = await supabase.from("titles").select("*");
+  const { data: titles, error } = await supabase
+    .from("titles")
+    .select("*")
+    .order("id", { ascending: false });
 
   if (error) {
     return <p className="text-red-500">Error loading titles</p>;

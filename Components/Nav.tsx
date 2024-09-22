@@ -6,7 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 const NewNav = () => {
   const pathname = usePathname(); //for getting the active link
-  const { isSignedIn, user, isLoaded } = useUser();
+  const { isSignedIn } = useUser();
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -66,7 +66,16 @@ const NewNav = () => {
                   Features
                 </Link>
               </li>
-
+              <li>
+                <Link
+                  href="/pricing"
+                  className={`block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 ${
+                    pathname === "/pricing" ? "text-black font-semibold" : ""
+                  }`}
+                >
+                  Pricing
+                </Link>
+              </li>
               <li>
                 <Link
                   href="contact"
@@ -113,6 +122,16 @@ const NewNav = () => {
                 }`}
               >
                 Features
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/pricing"
+                className={`block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 ${
+                  pathname === "/pricing" ? "text-black font-semibold" : ""
+                }`}
+              >
+                Pricing
               </Link>
             </li>
 
