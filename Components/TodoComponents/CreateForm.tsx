@@ -1,44 +1,57 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
+import { useUser } from "@clerk/nextjs";
 
 export default function CreateForm() {
   const [title, setTitle] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const supabase = createClerkSupabaseClient();
+  const { user } = useUser(); // Get the user from Clerk
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function HandleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (title.trim() === "") {
-      setError("Title cannot be empty");
+    // Ensure the user is authenticated before proceeding
+    if (!user) {
+      setError("You must be logged in to create a task");
       return;
     }
 
-    const res = await fetch("/api/create", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title }),
-    });
-
-    if (!res.ok) {
-      setError("Error creating title");
-    } else {
-      setTitle("");
+    try {
+      // Clear any previous errors
       setError(null);
-      router.refresh(); // Refresh the page to show updated titles
+
+      // Insert task with the current user's ID from Clerk
+      const { error: insertError } = await supabase.from("todo").insert({
+        todo: title,
+        user_id: user.id, // Use Clerk's user ID to associate the task with the user
+      });
+
+      if (insertError) {
+        setError("Error creating task: " + insertError.message);
+      } else {
+        setTitle(""); // Clear the form input
+        router.refresh(); // Refresh the page or fetch updated data
+      }
+    } catch (err) {
+      setError("An unexpected error occurred");
     }
-  };
+  }
 
   return (
     <div className="max-w-md mx-auto mt-10">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={HandleSubmit}
         className="bg-white p-6 rounded-lg shadow-md"
       >
         <h2 className="text-2xl mb-4">Create a new Title</h2>
+
+        {/* Show the error message if there is one */}
         {error && <p className="text-red-500">{error}</p>}
+
         <div className="mb-4">
           <label htmlFor="title" className="block text-sm font-medium">
             Title
@@ -52,6 +65,7 @@ export default function CreateForm() {
             className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
+
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"

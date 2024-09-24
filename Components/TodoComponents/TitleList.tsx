@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
-import { revalidatePath } from "next/cache";
 
 export default function TitleList() {
   const [tasks, setTasks] = useState<any[]>([]);
@@ -35,7 +34,6 @@ export default function TitleList() {
 
   // Function to delete a task
   const deleteTask = async (taskId: number) => {
-    console.log(taskId);
     try {
       await supabase.from("todo").delete().eq("id", taskId); // Delete the task by id
     } catch (e) {
