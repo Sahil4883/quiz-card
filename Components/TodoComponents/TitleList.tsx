@@ -1,35 +1,74 @@
-import { createClient } from "@/app/utils/supabase/server";
+"use client";
+import { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
+import { revalidatePath } from "next/cache";
 
-export default async function TitleList() {
-  const supabase = createClient();
-  const { data: titles, error } = await supabase
-    .from("titles")
-    .select("*")
-    .order("id", { ascending: false });
+export default function TitleList() {
+  const [tasks, setTasks] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const { user } = useUser();
+  const supabase = createClerkSupabaseClient();
+
+  // Fetch todos when user is available
+  useEffect(() => {
+    if (!user) return;
+
+    async function loadTasks() {
+      try {
+        const { data, error } = await supabase
+          .from("todo")
+          .select("id, todo") // Fetch the id and todo column
+          .order("id", { ascending: false });
+
+        if (!error) {
+          setTasks(data);
+        }
+      } catch (e) {
+        setError("An unexpected error occurred");
+      }
+    }
+
+    loadTasks();
+  }, [user, supabase]);
+
+  // Function to delete a task
+  const deleteTask = async (taskId: number) => {
+    console.log(taskId);
+    try {
+      await supabase.from("todo").delete().eq("id", taskId); // Delete the task by id
+    } catch (e) {
+      setError("An unexpected error occurred during deletion");
+    }
+  };
 
   if (error) {
-    return <p className="text-red-500">Error loading titles</p>;
+    return <p className="text-red-500">{error}</p>;
   }
 
   return (
     <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl mb-4">Title List</h2>
-      {titles?.length ? (
+      <h2 className="text-2xl mb-4">Todo List</h2>
+      {tasks.length > 0 ? (
         <ul className="bg-white p-6 rounded-lg shadow-md">
-          {titles.map((title: { title: string }, id: number) => (
+          {tasks.map((task: { id: number; todo: string }) => (
             <li
-              key={id}
+              key={task.id}
               className="border-b py-2 flex justify-between items-center"
             >
-              {title.title}
-              <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out">
+              {task.todo} {/* Displaying the `todo` field */}
+              <button
+                onClick={() => deleteTask(task.id)} // Call deleteTask on click
+                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
+              >
                 Delete
               </button>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No titles found.</p>
+        <p>No todos found.</p>
       )}
     </div>
   );
