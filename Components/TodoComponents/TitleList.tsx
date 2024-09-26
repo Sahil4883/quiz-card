@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
+import { toast, Bounce } from "react-toastify";
 
 export default function TitleList() {
   const [tasks, setTasks] = useState<any[]>([]);
@@ -36,6 +37,17 @@ export default function TitleList() {
   const deleteTask = async (taskId: number) => {
     try {
       await supabase.from("todo").delete().eq("id", taskId); // Delete the task by id
+      toast("Todo Deleted!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     } catch (e) {
       setError("An unexpected error occurred during deletion");
     }

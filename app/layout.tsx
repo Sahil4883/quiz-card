@@ -24,7 +24,6 @@ export default function RootLayout({
         <CSPostHogProvider>
           <body>
             <Nav />
-
             {children}
             <Footer />
           </body>

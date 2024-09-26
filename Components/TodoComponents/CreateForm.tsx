@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
 import { useUser } from "@clerk/nextjs";
+import { toast, Bounce } from "react-toastify";
+import { revalidatePath } from "next/cache";
 
 export default function CreateForm() {
   const [title, setTitle] = useState("");
@@ -13,6 +15,17 @@ export default function CreateForm() {
 
   async function HandleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    toast("Todo Created!", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
 
     // Ensure the user is authenticated before proceeding
     if (!user) {
@@ -34,9 +47,10 @@ export default function CreateForm() {
         setError("Error creating task: " + insertError.message);
       } else {
         setTitle(""); // Clear the form input
-        router.refresh(); // Refresh the page or fetch updated data
+        revalidatePath("/dashboard"); // Revalidate the cache for the current path
       }
     } catch (err) {
+      console.log(err);
       setError("An unexpected error occurred");
     }
   }

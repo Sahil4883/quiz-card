@@ -1,5 +1,7 @@
 import CreateForm from "@/Components/TodoComponents/CreateForm";
 import TitleList from "@/Components/TodoComponents/TitleList";
+import { Bounce, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export async function UserProfile() {
   return (
@@ -9,6 +11,19 @@ export async function UserProfile() {
       <CreateForm />
       {/* Fetches titles from Supabase */}
       <TitleList />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </div>
   );
 }
