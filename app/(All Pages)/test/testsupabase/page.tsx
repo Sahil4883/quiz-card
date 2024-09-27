@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
+import DashboardProfile from "@/Components/TodoComponents/DashboardProfile";
 export default function Home() {
   const [tasks, setTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -57,6 +58,7 @@ export default function Home() {
         />
         <button type="submit">Add</button>
       </form>
+      <DashboardProfile />
     </div>
   );
 }
