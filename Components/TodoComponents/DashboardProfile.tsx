@@ -24,14 +24,26 @@ export default function DashboardProfile() {
       return "An unexpected error occurred";
     }
   }
+  // Load task functions
+
+  useEffect(() => {
+    if (!user) return;
+
+    async function loadTasks() {
+      setLoading(true);
+      const { data, error } = await client
+        .from("todo")
+        .select("id, todo")
+        .order("id", { ascending: false });
+      if (!error) setList(data);
+      setLoading(false);
+    }
+
+    loadTasks();
+  }, [user]);
 
   return (
     <>
-      {loading && <p>Loading...</p>}
-      {!loading &&
-        list.length > 0 &&
-        list.map((task: any) => <p>{task.name}</p>)}
-      {!loading && list.length === 0 && <p>No tasks found</p>}
       <form onSubmit={createList} className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl mb-4">Create a new Title</h2>
 
@@ -56,6 +68,27 @@ export default function DashboardProfile() {
           Submit
         </button>
       </form>
+      {/* The list goes below*/}
+      <div className="max-w-md mx-auto mt-10">
+        <h2 className="text-2xl mb-4">Todo List</h2>
+        {list.length > 0 ? (
+          <ul className="bg-white p-6 rounded-lg shadow-md">
+            {list.map((task: { id: number; todo: string }) => (
+              <li
+                key={task.id}
+                className="border-b py-2 flex justify-between items-center"
+              >
+                {task.todo} {/* Displaying the `todo` field */}
+                <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out">
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No todos found.</p>
+        )}
+      </div>
     </>
   );
 }
