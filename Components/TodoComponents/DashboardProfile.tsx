@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
+import { revalidatePath } from "next/cache";
 
 export default function DashboardProfile() {
   const [list, setList] = useState<any[]>([]);
@@ -26,22 +27,30 @@ export default function DashboardProfile() {
   }
   // Load task functions
 
+  const loadTasks = async () => {
+    // Load tasks function called here so it can be reused
+    setLoading(true);
+    const { data, error } = await client
+      .from("todo")
+      .select("id, todo")
+      .order("id", { ascending: false });
+    if (!error) setList(data);
+    setLoading(false);
+  };
   useEffect(() => {
     if (!user) return;
 
-    async function loadTasks() {
-      setLoading(true);
-      const { data, error } = await client
-        .from("todo")
-        .select("id, todo")
-        .order("id", { ascending: false });
-      if (!error) setList(data);
-      setLoading(false);
-    }
-
     loadTasks();
   }, [user]);
-
+  //delete id function goes below
+  const deleteTask = async (taskId: number) => {
+    try {
+      await client.from("todo").delete().eq("id", taskId); // Delete the task by id
+    } catch (e) {
+      return "An unexpected error occurred during deletion";
+    }
+    loadTasks();
+  };
   return (
     <>
       <form onSubmit={createList} className="bg-white p-6 rounded-lg shadow-md">
@@ -79,7 +88,10 @@ export default function DashboardProfile() {
                 className="border-b py-2 flex justify-between items-center"
               >
                 {task.todo} {/* Displaying the `todo` field */}
-                <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out">
+                <button
+                  onClick={() => deleteTask(task.id)} // Call deleteTask on click
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
+                >
                   Delete
                 </button>
               </li>
