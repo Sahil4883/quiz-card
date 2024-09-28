@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { UserProfile } from "@/Components/TodoComponents/User-Profile";
 import Textloading from "@/Components/(Skeleton)/Loading";
 import { Protect } from "@clerk/nextjs";
+import DashboardProfile from "@/Components/TodoComponents/DashboardProfile";
 
 export default async function dashboard() {
   return (
@@ -9,7 +10,7 @@ export default async function dashboard() {
     <Protect>
       <Suspense fallback={<Textloading />}>
         {" "}
-        <UserProfile />
+        <DashboardProfile />
       </Suspense>
     </Protect>
   );
