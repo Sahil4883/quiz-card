@@ -81,7 +81,7 @@ export default function DashboardProfile() {
 
   const updateTask = async (taskId: number) => {
     const id = taskId;
-    router.push(`/update/${id}`);
+    router.push(`/dashboard/update/${id}`);
     //router push to the update page successfull
   };
   return (
