@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
-import { revalidatePath } from "next/cache";
-
+import { toast, Bounce } from "react-toastify";
 export default function DashboardProfile() {
   const [list, setList] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -13,6 +12,17 @@ export default function DashboardProfile() {
 
   async function createList(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    toast("Todo Created!", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
     if (!user) {
       return "You must be logged in to create a task";
     }
@@ -22,6 +32,7 @@ export default function DashboardProfile() {
         user_id: user.id, // Use Clerk's user ID to associate the task with the user
       });
       loadTasks();
+      setTodo("");
     } catch (err) {
       console.log(err);
       return "An unexpected error occurred";
@@ -48,11 +59,24 @@ export default function DashboardProfile() {
   const deleteTask = async (taskId: number) => {
     try {
       await client.from("todo").delete().eq("id", taskId); // Delete the task by id
+      toast("Todo Deleted!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     } catch (e) {
       return "An unexpected error occurred during deletion";
     }
     loadTasks();
   };
+
+  const updateTask = async (taskId: number) => {};
   return (
     <>
       <div className="max-w-md mx-auto mt-10">
@@ -87,6 +111,7 @@ export default function DashboardProfile() {
       {/* The list goes below*/}
       <div className="max-w-md mx-auto mt-10">
         <h2 className="text-2xl mb-4">Todo List</h2>
+        {loading && <p>Loading...</p>}
         {list.length > 0 ? (
           <ul className="bg-white p-6 rounded-lg shadow-md">
             {list.map((task: { id: number; todo: string }) => (
@@ -95,12 +120,20 @@ export default function DashboardProfile() {
                 className="border-b py-2 flex justify-between items-center"
               >
                 {task.todo} {/* Displaying the `todo` field */}
-                <button
-                  onClick={() => deleteTask(task.id)} // Call deleteTask on click
-                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
-                >
-                  Delete
-                </button>
+                <li className="flex justify-between space-x-4">
+                  <button
+                    onClick={() => deleteTask(task.id)} // Call deleteTask on click
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
+                  >
+                    Update
+                  </button>
+                  <button
+                    onClick={() => deleteTask(task.id)} // Call deleteTask on click
+                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
+                  >
+                    Delete
+                  </button>
+                </li>
               </li>
             ))}
           </ul>
