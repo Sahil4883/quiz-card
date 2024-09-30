@@ -85,7 +85,7 @@ export default function DashboardProfile() {
     //router push to the update page successfull
   };
   return (
-    <>
+    <div>
       <div className="max-w-md mx-auto mt-10">
         <form
           onSubmit={createList}
@@ -148,6 +148,6 @@ export default function DashboardProfile() {
           <p>No todos found.</p>
         )}
       </div>
-    </>
+    </div>
   );
 }
