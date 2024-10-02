@@ -27,10 +27,14 @@ export default function Page({ params }: { params: { id: string } }) {
   getTodo();
 
   // Handle form submission (optional)
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Perform update logic here
-    console.log("Updated Todo:", todo);
+    try {
+      await supabase.from("todo").update({ todo: todo }).eq("id", taskId);
+      setTodo(""); // Clear the todo value
+    } catch {
+      console.log("error");
+    }
   };
 
   return (
@@ -48,7 +52,7 @@ export default function Page({ params }: { params: { id: string } }) {
           <input
             id="title"
             type="text"
-            value={todo} // Bind the input to the todo state
+            defaultValue={todo}
             onChange={(e) => setTodo(e.target.value)} // Allow updating the input value
             required
             className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
