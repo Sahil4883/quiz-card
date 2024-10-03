@@ -3,35 +3,32 @@ import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
 import { useState, useEffect } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [todo, setTodo] = useState(""); // State to hold the todo value
+  const [todo, setTodo] = useState("");
   const taskId = params.id;
   const supabase = createClerkSupabaseClient();
 
-  // Function to fetch the todo item
   async function getTodo() {
     const { data, error } = await supabase
       .from("todo")
       .select("todo")
       .eq("id", taskId)
-      .single(); // Fetch a single todo by id
+      .single();
 
     if (data) {
-      setTodo(data.todo); // Set the todo value in state
+      setTodo(data.todo);
     }
     if (error) {
       console.error("Error fetching todo:", error);
     }
   }
 
-  // Fetch the todo item when the component mounts
   getTodo();
 
-  // Handle form submission (optional)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await supabase.from("todo").update({ todo: todo }).eq("id", taskId);
-      setTodo(""); // Clear the todo value
+      setTodo("");
     } catch {
       console.log("error");
     }
@@ -53,7 +50,7 @@ export default function Page({ params }: { params: { id: string } }) {
             id="title"
             type="text"
             defaultValue={todo}
-            onChange={(e) => setTodo(e.target.value)} // Allow updating the input value
+            onChange={(e) => setTodo(e.target.value)}
             required
             className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
