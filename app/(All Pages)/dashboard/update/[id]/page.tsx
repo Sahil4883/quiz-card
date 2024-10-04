@@ -8,11 +8,13 @@ export default function Page({ params }: { params: { id: string } }) {
   const supabase = createClerkSupabaseClient();
 
   async function getTodo() {
+    //The data is the same which is fetched in the previous page and not the updated one
     const { data, error } = await supabase
       .from("todo")
       .select("todo")
       .eq("id", taskId)
       .single();
+    console.log(data);
 
     if (data) {
       setTodo(data.todo);
