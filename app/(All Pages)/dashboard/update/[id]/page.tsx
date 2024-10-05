@@ -32,6 +32,8 @@ export default function Page({ params }: { params: { id: string } }) {
         .update({ todo: todo })
         .eq("id", taskId);
       //There's an error getting the data and the data being updated
+      //Make a update RLS in supabase
+      //got the update rls policy still there's an error updating the data
       console.log(data);
       setTodo("");
     } catch {
