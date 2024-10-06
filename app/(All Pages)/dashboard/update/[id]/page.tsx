@@ -1,6 +1,6 @@
 "use client";
 import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [todo, setTodo] = useState("");
@@ -34,6 +34,9 @@ export default function Page({ params }: { params: { id: string } }) {
       //There's an error getting the data and the data being updated
       //Make a update RLS in supabase
       //got the update rls policy still there's an error updating the data
+      //checked the rls policy and it's correct
+      //find out that the error is because of the update function
+      // try out tutorial if necessary
       console.log(data);
       setTodo("");
     } catch {
