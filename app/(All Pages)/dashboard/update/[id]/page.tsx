@@ -37,6 +37,7 @@ export default function Page({ params }: { params: { id: string } }) {
       //checked the rls policy and it's correct
       //find out that the error is because of the update function
       // try out tutorial if necessary
+      //tried different method still the issue persues will try out different method in future
       console.log(data);
       setTodo("");
     } catch {
