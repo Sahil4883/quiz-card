@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
+//TODO: Add your pricing details here
+
 const Pricing = () => {
   return (
     <>

@@ -1,6 +1,6 @@
 "use client";
 //Putting this page on hold for now
-import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
+import createClerkSupabaseClient from "@/app/utils/supabase/createClerkSupabaseClient";
 import { useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
