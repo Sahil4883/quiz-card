@@ -1,9 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
+import createClerkSupabaseClient from "@/app/utils/supabase/createClerkSupabaseClient";
 import { toast, Bounce } from "react-toastify";
-import { useRouter } from "next/navigation";
 
 export default function DashboardProfile() {
   const [list, setList] = useState<any[]>([]);
@@ -11,7 +10,6 @@ export default function DashboardProfile() {
   const [todo, setTodo] = useState("");
   const { user } = useUser();
   const client = createClerkSupabaseClient();
-  const router = useRouter();
 
   async function createList(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -79,11 +77,6 @@ export default function DashboardProfile() {
     loadTasks();
   };
 
-  const updateTask = async (taskId: number) => {
-    const id = taskId;
-    router.push(`/dashboard/update/${id}`);
-    //router push to the update page successfull
-  };
   return (
     <div>
       <div className="max-w-md mx-auto mt-10">
@@ -127,20 +120,14 @@ export default function DashboardProfile() {
                 className="border-b py-2 flex justify-between items-center"
               >
                 {task.todo} {/* Displaying the `todo` field */}
-                <li className="flex justify-between space-x-4">
-                  <button
-                    onClick={() => updateTask(task.id)} // Call deleteTask on click
-                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
-                  >
-                    Update
-                  </button>
+                <div className="flex justify-between space-x-4">
                   <button
                     onClick={() => deleteTask(task.id)} // Call deleteTask on click
                     className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out"
                   >
                     Delete
                   </button>
-                </li>
+                </div>
               </li>
             ))}
           </ul>
