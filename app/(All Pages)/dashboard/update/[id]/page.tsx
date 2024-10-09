@@ -1,4 +1,5 @@
 "use client";
+//Putting this page on hold for now
 import createClerkSupabaseClient from "@/app/utils/supabase/supabase";
 import { useState } from "react";
 
