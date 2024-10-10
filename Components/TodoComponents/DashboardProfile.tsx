@@ -3,6 +3,13 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import createClerkSupabaseClient from "@/app/utils/supabase/createClerkSupabaseClient";
 import { toast, Bounce } from "react-toastify";
+import { Button } from "@/Components/ui/button";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/Components/ui/tooltip";
 
 export default function DashboardProfile() {
   const [list, setList] = useState<any[]>([]);
@@ -100,12 +107,23 @@ export default function DashboardProfile() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          >
-            Submit
-          </button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  type="submit"
+                  variant="outline"
+                  size="lg"
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white"
+                >
+                  Add
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Add Todo</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </form>
       </div>
       {/* The list goes below*/}
