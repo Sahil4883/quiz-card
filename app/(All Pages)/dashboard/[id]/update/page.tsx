@@ -2,24 +2,29 @@
 //Putting this page on hold for now
 import createClerkSupabaseClient from "@/app/utils/supabase/createClerkSupabaseClient";
 import { useState } from "react";
+import { useUser } from "@clerk/nextjs";
 
 export default function Page({ params }: { params: { id: string } }) {
+  const { user } = useUser();
   const [todo, setTodo] = useState("");
   const taskId = params.id;
   const supabase = createClerkSupabaseClient();
 
   async function getTodo() {
-    const { data, error } = await supabase
-      .from("todo")
-      .select("todo")
-      .eq("id", taskId)
-      .single();
-
-    if (data) {
-      setTodo(data.todo);
+    if (!user) {
+      return;
     }
-    if (error) {
-      console.error("Error fetching todo:", error);
+    try {
+      const { data, error } = await supabase
+        .from("todo")
+        .select("todo")
+        .eq("id", taskId)
+        .single(); //dont touch this as this works perfectly
+      if (data) {
+        setTodo(data.todo);
+      }
+    } catch {
+      console.log("Error fetching todo:");
     }
   }
 
@@ -27,18 +32,18 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    //the default value is passed in the function eg. if the loaded value is yum then even if editing the value in the input field the value will be yum
+    if (!user) {
+      return;
+    }
     try {
+      console.log(todo);
+      console.log("its in submitting");
       const { data, error } = await supabase
         .from("todo")
         .update({ todo: todo })
-        .eq("id", taskId);
-      //There's an error getting the data and the data being updated
-      //Make a update RLS in supabase
-      //got the update rls policy still there's an error updating the data
-      //checked the rls policy and it's correct
-      //find out that the error is because of the update function
-      // try out tutorial if necessary
-      //tried different method still the issue persues will try out different method in future
+        .eq("id", taskId)
+        .eq("user_id", user.id);
       console.log(data);
       setTodo("");
     } catch {
@@ -61,7 +66,7 @@ export default function Page({ params }: { params: { id: string } }) {
           <input
             id="title"
             type="text"
-            defaultValue={todo}
+            value={todo} // change defaultValue to value
             onChange={(e) => setTodo(e.target.value)}
             required
             className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
