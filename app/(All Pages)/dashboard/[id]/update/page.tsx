@@ -33,6 +33,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     //the default value is passed in the function eg. if the loaded value is yum then even if editing the value in the input field the value will be yum
+    //make the changes in this code
     if (!user) {
       return;
     }
