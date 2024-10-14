@@ -24,7 +24,7 @@ const Pricing = () => {
                 Best option for personal use & for your next project.
               </p>
               <div className="flex justify-center items-baseline my-8">
-                <span className="mr-2 text-5xl font-extrabold">$29</span>
+                <span className="mr-2 text-5xl font-extrabold">$5</span>
                 <span className="text-gray-500 dark:text-gray-400">/month</span>
               </div>
               <ul role="list" className="mb-8 space-y-4 text-left">
@@ -126,7 +126,7 @@ const Pricing = () => {
                 Relevant for multiple users, extended & premium support.
               </p>
               <div className="flex justify-center items-baseline my-8">
-                <span className="mr-2 text-5xl font-extrabold">$99</span>
+                <span className="mr-2 text-5xl font-extrabold">$7</span>
                 <span className="text-gray-500 dark:text-gray-400">/month</span>
               </div>
               <ul role="list" className="mb-8 space-y-4 text-left">
@@ -228,8 +228,8 @@ const Pricing = () => {
                 Best for large scale uses and extended redistribution rights.
               </p>
               <div className="flex justify-center items-baseline my-8">
-                <span className="mr-2 text-5xl font-extrabold">$499</span>
-                <span className="text-gray-500 dark:text-gray-400">/month</span>
+                <span className="mr-2 text-5xl font-extrabold">$50</span>
+                <span className="text-gray-500 dark:text-gray-400">/year</span>
               </div>
               <ul role="list" className="mb-8 space-y-4 text-left">
                 <li className="flex items-center space-x-3">
