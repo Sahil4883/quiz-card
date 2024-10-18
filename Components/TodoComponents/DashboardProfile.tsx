@@ -67,6 +67,7 @@ export default function DashboardProfile() {
   const deleteTask = async (taskId: number) => {
     try {
       await client.from("todo").delete().eq("id", taskId); // Delete the task by id
+      //This is a toast notification
       toast("Todo Deleted!", {
         position: "bottom-right",
         autoClose: 3000,
