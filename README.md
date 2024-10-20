@@ -52,9 +52,7 @@ bun dev
 - **Backend:** Next.js api,Node.js
 - **Styling:** CSS, Tailwind, DaisyUI, Bootstrap
 - **Database:** postgresql
-- **Auth:** Clerk
-  -**DBMS:** Supabase
-  -**Analytics:** PostHog
+- **Auth:** Clerk -**DBMS:** Supabase -**Analytics:** PostHog
 
 ## Contributing
 
@@ -70,6 +68,10 @@ We welcome contributions! Please follow these steps to contribute:
 ## Contact
 
 For any questions or suggestions, please contact or open an issue on GitHub.
+
+## Updates
+
+Currently the website does simple crud applications and is getting ready to be upgraded onto a full fledged quiz app with more features and better UI/UX.
 
 ---
 
