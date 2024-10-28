@@ -1,4 +1,4 @@
-import createClerkSupabaseClient from "./supabase/createClerkSupabaseClient";
+import createClerkSupabaseClient from "@/app/utils/supabase/createClerkSupabaseClient";
 import { useUser } from "@clerk/clerk-react";
 const client = createClerkSupabaseClient();
 //for eg
