@@ -49,6 +49,7 @@ export default async function NewDashboard() {
             >
               {t.todo}
               <div className="flex justify-between space-x-4">
+                {/* Make the delete function a server action */}
                 <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 ease-in-out">
                   Delete
                 </button>
