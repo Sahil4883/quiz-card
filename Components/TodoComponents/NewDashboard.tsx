@@ -5,6 +5,10 @@ import prisma from "@/lib/db";
 export default async function NewDashboard() {
   const user = await currentUser(); // Retrieve the current user on the server
   const currentUserId = user?.id;
+  {}
+
+
+  {/*This way the data gets exposed to the user so use select in data fetching */}
   const todo = await prisma.todo.findMany({
     where: {
       user_id: currentUserId,
