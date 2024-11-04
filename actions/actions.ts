@@ -18,6 +18,29 @@ export async function createTodo(formData:FormData){
         console.error(error)
         
     }
-    revalidatePath("/exp11");
+    revalidatePath("/test");
 
+}
+export async function getTodos(id:string){
+    try {
+        const todos = await prisma.todo.findMany({
+            where:{
+                user_id:id
+            }
+        })
+        return todos
+    } catch (error) {
+        console.error(error)
+    }
+}
+export async function deleteTodo(id:string){
+    try {
+        await prisma.todo.delete({
+            where:{
+                id: Number(id)
+            }
+        })
+    } catch (error) {
+        console.error(error)
+    }
 }
