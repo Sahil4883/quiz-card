@@ -5,7 +5,7 @@ import prisma from "@/lib/db";
 export default async function NewDashboard() {
   const user = await currentUser(); // Retrieve the current user on the server
   const currentUserId = user?.id;
-  {}
+  {/*Here will come the function to delete the clicked todo from the user */}
 
 
   {/*This way the data gets exposed to the user so use select in data fetching */}
